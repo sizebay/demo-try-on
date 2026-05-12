@@ -1020,14 +1020,33 @@
       }
 
       /* ── CSV / TSV parser ── */
+      function splitCSVLine(line, sep) {
+        if (sep === "\t") return line.split("\t");
+        const cols = [];
+        let cur = "", inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') { cur += '"'; i++; }
+            else inQuotes = !inQuotes;
+          } else if (ch === sep && !inQuotes) {
+            cols.push(cur); cur = "";
+          } else {
+            cur += ch;
+          }
+        }
+        cols.push(cur);
+        return cols;
+      }
+
       function parseCSV(text) {
         const lines = text.trim().split("\n");
         const sep = lines[0].includes("\t") ? "\t" : ",";
-        const headers = lines[0].split(sep).map((h) => h.trim());
+        const headers = splitCSVLine(lines[0], sep).map((h) => h.trim());
         return lines
           .slice(1)
           .map((line) => {
-            const cols = line.split(sep);
+            const cols = splitCSVLine(line, sep);
             const obj = {};
             headers.forEach((h, i) => (obj[h] = (cols[i] || "").trim()));
             return obj;
