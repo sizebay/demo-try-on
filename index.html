@@ -1207,6 +1207,8 @@
       }
 
       function validateImageUrl(url) {
+        if (/\.(jpg|jpeg|png|webp|gif|avif|svg|bmp|tiff?)(\?.*)?$/i.test(url))
+          return "likely_image";
         const pp = [
           /\/products?\//i,
           /\/item\//i,
@@ -1220,8 +1222,6 @@
           /\?(.*)(pid|sku|ref|id)=/i,
         ];
         for (const p of pp) if (p.test(url)) return "product_page";
-        if (/\.(jpg|jpeg|png|webp|gif|avif|svg|bmp|tiff?)(\?.*)?$/i.test(url))
-          return "likely_image";
         return "unknown";
       }
 
