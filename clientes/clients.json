@@ -65,5 +65,11 @@
     "name": "Pzama",
     "logo": "https://adaptive-images.uooucdn.com.br/tr:w-200,h-55,c-at_max,pr-true,q-90/a22431-ogxytnpxut0/s/c2/10/4f/0f929b3865fc13ff662d707508.svg",
     "csv": "clientes/pzama.csv"
+  },
+  {
+    "id": "sarah-chofakian",
+    "name": "Sarah Chofakian",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi_0vK_Phmd7D1vwpf78JxChIe-Hk3AYedsnBRrjesTUe8mZmdX1D_Sqo&s=10",
+    "csv": "clientes/sarah-chofakian.csv"
   }
 ]

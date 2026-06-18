@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -167,6 +167,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const nome = urlParams.get("nome") || "";
       const img = urlParams.get("img") || "";
+      const clientId = urlParams.get("client") || "";
       let currentLang =
         urlParams.get("lang") || localStorage.getItem("szb_lang") || "pt";
 
@@ -219,7 +220,10 @@
           getSelfTryonPermalink: () => window.location.href,
           getSelfTryonProductData: () => ({
             product_id: window.location.href,
-            title: document.getElementById("prod-titulo").textContent,
+            title:
+              clientId === "sarah-chofakian"
+                ? "shoes"
+                : document.getElementById("prod-titulo").textContent,
             price: null,
             image_url: img,
           }),
@@ -228,6 +232,7 @@
             "https://tryon-dev.internalsizebay.com/tryon/index.html",
           getSelfTryonBackendUrl: () =>
             "https://tryon-dev.internalsizebay.com/",
+          getDebug: () => true,
         });
 
         window.addEventListener("DOMContentLoaded", () => {

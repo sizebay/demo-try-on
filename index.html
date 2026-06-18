@@ -1163,6 +1163,7 @@
         if (img) params.set("img", img);
         params.set("lang", currentLang);
         if (currentClient?.imageFit) params.set("imageFit", currentClient.imageFit);
+        if (currentClient?.id) params.set("client", currentClient.id);
         window.open("produto.html?" + params.toString(), "_blank");
       }
 
