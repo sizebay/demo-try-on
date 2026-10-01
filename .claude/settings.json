@@ -1,0 +1,11 @@
+{
+  "extraKnownMarketplaces": {
+    "sizebay": {
+      "source": { "source": "github", "repo": "sizebay/claude-plugins" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "sizebay@sizebay": true
+  }
+}
