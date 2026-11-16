@@ -178,7 +178,8 @@
         text-transform: uppercase;
         letter-spacing: 0.8px;
       }
-      input[type="text"] {
+      input[type="text"],
+      select {
         width: 100%;
         padding: 11px 14px;
         border: 1px solid #e0e0e0;
@@ -190,7 +191,8 @@
         transition: border-color 0.2s;
         outline: none;
       }
-      input[type="text"]:focus {
+      input[type="text"]:focus,
+      select:focus {
         border-color: #1a1a1a;
         background: #fff;
       }
@@ -679,6 +681,25 @@
             >
           </div>
         </div>
+        <div class="field">
+          <label for="inp-categoria" data-i18n="label_cat">Categoria do Produto</label>
+          <select id="inp-categoria">
+            <option value="UPPER_BODY" data-i18n="cat_upper" selected>
+              Parte de cima (camisas, blusas, casacos)
+            </option>
+            <option value="LOWER_BODY" data-i18n="cat_lower">
+              Parte de baixo (calças, saias, shorts)
+            </option>
+            <option value="FULL_BODY" data-i18n="cat_full">
+              Corpo inteiro (vestidos, macacões)
+            </option>
+            <option value="FOOTWEAR" data-i18n="cat_footwear">Calçados</option>
+            <option value="BAGS" data-i18n="cat_bags">Bolsas</option>
+            <option value="HEAD" data-i18n="cat_head">
+              Cabeça (chapéus, óculos, brincos, colares)
+            </option>
+          </select>
+        </div>
         <button
           class="btn-primary"
           id="btn-gerar"
@@ -776,6 +797,13 @@
           placeholder_nome: "Ex: Trench Coat Milano",
           label_img: "Link da Imagem",
           placeholder_img: "https://...",
+          label_cat: "Categoria do Produto",
+          cat_upper: "Parte de cima (camisas, blusas, casacos)",
+          cat_lower: "Parte de baixo (calças, saias, shorts)",
+          cat_full: "Corpo inteiro (vestidos, macacões)",
+          cat_footwear: "Calçados",
+          cat_bags: "Bolsas",
+          cat_head: "Cabeça (chapéus, óculos, brincos, colares)",
           btn_gerar: "Gerar Página →",
           btn_limpar: "Limpar tudo",
           alert_vazio: "Preencha pelo menos um campo antes de gerar.",
@@ -808,6 +836,13 @@
           placeholder_nome: "E.g: Milano Trench Coat",
           label_img: "Image URL",
           placeholder_img: "https://...",
+          label_cat: "Product Category",
+          cat_upper: "Tops (shirts, blouses, jackets)",
+          cat_lower: "Bottoms (pants, skirts, shorts)",
+          cat_full: "Full body (dresses, jumpsuits)",
+          cat_footwear: "Footwear",
+          cat_bags: "Bags",
+          cat_head: "Head (hats, glasses, earrings, necklaces)",
           btn_gerar: "Generate Page →",
           btn_limpar: "Clear all",
           alert_vazio: "Please fill in at least one field before generating.",
@@ -1269,6 +1304,7 @@
         const params = new URLSearchParams();
         if (nome) params.set("nome", nome);
         if (img) params.set("img", img);
+        params.set("cat", document.getElementById("inp-categoria").value);
         params.set("lang", currentLang);
         window.location.href = "produto.html?" + params.toString();
       }
@@ -1276,6 +1312,7 @@
       function limpar() {
         document.getElementById("inp-nome").value = "";
         document.getElementById("inp-imagem").value = "";
+        document.getElementById("inp-categoria").value = "UPPER_BODY";
         setImageState("idle");
       }
 
