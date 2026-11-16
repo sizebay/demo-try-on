@@ -168,6 +168,8 @@
       const nome = urlParams.get("nome") || "";
       const img = urlParams.get("img") || "";
       const clientId = urlParams.get("client") || "";
+      const CATEGORIES = ["UPPER_BODY", "LOWER_BODY", "FULL_BODY", "FOOTWEAR", "BAGS", "HEAD"];
+      const cat = CATEGORIES.includes(urlParams.get("cat")) ? urlParams.get("cat") : null;
       let currentLang =
         urlParams.get("lang") || localStorage.getItem("szb_lang") || "pt";
 
@@ -226,6 +228,7 @@
                 : document.getElementById("prod-titulo").textContent,
             price: null,
             image_url: img,
+            ...(cat && { inferred_category_group: cat }),
           }),
           getBaseVrfUrl: () => "https://vfr-v3-production.sizebay.technology/",
           getSelfTryonBaseUrl: () =>
